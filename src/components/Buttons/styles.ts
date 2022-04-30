@@ -61,4 +61,10 @@ export const Button = styled.button<ButtonProps>`
 
       border-radius: 3px;
     `}
+
+    transition: transform .3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

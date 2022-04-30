@@ -26,9 +26,13 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
   }
 
-  button{
+  button,input{
     border: none;
     outline: none;
+  }
+
+  button{
     cursor: pointer
   }
+
 `;
