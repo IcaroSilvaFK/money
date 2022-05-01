@@ -1,37 +1,33 @@
 import { ReactNode } from "react";
 
-import { Container, Header, Body, Footer } from "./style";
+import { Container, Header, Body } from "./style";
 
 interface IcardsProps {
   title: string;
   typeTransactionIcon?: ReactNode;
   money: string;
-  date?: string;
-  timeIcon?: ReactNode;
   type: "whitdraw" | "entry";
+  typeCard: "whitdraw" | "entry" | "result";
 }
 
 export function Card({
-  date,
   money,
-  timeIcon,
   title,
   typeTransactionIcon,
   type,
+  typeCard,
 }: IcardsProps) {
   return (
     <Container>
       <Header typeTransaction={type}>
         <strong>{title}</strong>
       </Header>
-      <Body typeTransaction={type}>
+      <Body typeTransaction={typeCard}>
         {typeTransactionIcon}
-        <span>{money}</span>
+        <span className={Number(money) > 0 ? "postive" : "negative"}>
+          {money}
+        </span>
       </Body>
-      <Footer>
-        {timeIcon}
-        <span>{date}</span>
-      </Footer>
     </Container>
   );
 }

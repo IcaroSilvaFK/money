@@ -1,0 +1,34 @@
+{
+  "transactions": [
+    {
+      "description": "comprar comida",
+      "value": "500",
+      "type": "entry",
+      "id": 1
+    },
+    {
+      "description": "comprar doces",
+      "value": "300",
+      "type": "whitdraw",
+      "id": 2
+    },
+    {
+      "description": "comprar livros",
+      "value": "150",
+      "type": "whitdraw",
+      "id": 3
+    },
+    {
+      "description": "Freela",
+      "value": "500",
+      "type": "entry",
+      "id": 4
+    },
+    {
+      "description": "seila",
+      "value": "600",
+      "type": "whitdraw",
+      "id": 5
+    }
+  ]
+}

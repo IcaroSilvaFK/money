@@ -4,6 +4,10 @@ interface ICardProps {
   typeTransaction: "whitdraw" | "entry";
 }
 
+interface ICardTypes {
+  typeTransaction: "whitdraw" | "entry" | "result";
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,7 +46,7 @@ export const Header = styled.div<ICardProps>`
     `}
 `;
 
-export const Body = styled.div<ICardProps>`
+export const Body = styled.div<ICardTypes>`
   text-align: center;
 
   font-size: 1.4rem;
@@ -51,7 +55,7 @@ export const Body = styled.div<ICardProps>`
   align-items: center;
   justify-content: center;
 
-  padding: 0 20px;
+  padding: 20px;
 
   ${(props) =>
     props.typeTransaction === "whitdraw" &&
@@ -63,17 +67,16 @@ export const Body = styled.div<ICardProps>`
     css`
       color: var(--secondary);
     `}
-`;
-
-export const Footer = styled.div`
-  font-size: 0.8rem;
-
-  text-align: center;
-
-  padding: 5px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  ${(props) =>
+    props.typeTransaction === "result" &&
+    css`
+      span {
+        &.postive {
+          color: var(--secondary);
+        }
+        &.negative {
+          color: var(--therdiary);
+        }
+      }
+    `}
 `;

@@ -8,3 +8,17 @@ export const ContainerCards = styled.div`
 
   margin-top: -50px;
 `;
+
+export const Ul = styled.ul`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 40px;
+
+  padding: 0 50px;
+`;

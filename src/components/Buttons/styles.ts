@@ -4,12 +4,14 @@ interface ButtonProps {
   styleComponent: "Primary" | "Secondary" | "Therdiary" | "Outline";
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.div<ButtonProps>`
   font-size: 0.9rem;
 
   display: flex;
   align-items: center;
   justify-content: Center;
+
+  cursor: pointer;
 
   ${(props) =>
     props.styleComponent === "Primary" &&

@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import { FaMoneyCheckAlt } from "react-icons/fa";
 
 import { Buttons } from "../Buttons";
@@ -6,8 +8,7 @@ import { useModal } from "../../store/modal.store";
 import { Container } from "./styles";
 
 export function Header() {
-  const { handleToogleModal } = useModal();
-
+  const router = useRouter();
   return (
     <Container>
       <div>
@@ -16,9 +17,9 @@ export function Header() {
       </div>
       <div>
         <Buttons
-          text='Nova transação'
-          style='Primary'
-          onClick={handleToogleModal}
+          text="Nova transação"
+          style="Primary"
+          onClick={() => router.push("/newTransaction")}
         />
       </div>
     </Container>

@@ -1,4 +1,3 @@
-import { BsTypeBold } from "react-icons/bs";
 import styled from "styled-components";
 
 export const ModalBackground = styled.div`
@@ -9,7 +8,7 @@ export const ModalBackground = styled.div`
   right: 0;
   bottom: 0;
 
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
 
   display: flex;
   align-items: center;
@@ -34,6 +33,31 @@ export const Container = styled.div`
     padding: 15px;
   }
 
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 20px;
+
+    button[type="submit"] {
+      padding: 8px 40px;
+
+      background: var(--primary);
+      color: #fff;
+
+      border-radius: 3px;
+
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   position: relative;
@@ -51,16 +75,6 @@ export const Title = styled.div`
   h2 {
     text-align: left;
   }
-`;
-
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 20px;
 `;
 
 export const Row = styled.div`
