@@ -18,9 +18,18 @@ export const Container = styled.div`
     align-items: center;
 
     gap: 10px;
+
+    text-align: center;
+
     button {
       background: transparent;
-      color: var(--therdiary);
+
+      &.entry {
+        color: var(--secondary);
+      }
+      &.whitdraw {
+        color: var(--therdiary);
+      }
     }
   }
 

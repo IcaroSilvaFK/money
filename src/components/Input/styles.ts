@@ -14,9 +14,7 @@ export const Container = styled.div`
   gap: 4px;
 
   input {
-    width: 300px;
-    height: 40px;
-
+    width: 100%;
     padding: 5px;
   }
 

@@ -42,6 +42,17 @@ export const Container = styled.div`
 
     padding: 20px;
 
+    textarea {
+      resize: none;
+
+      padding: 10px;
+      font-size: 1rem;
+
+      border-radius: 4px;
+      border: none;
+      outline: 1px solid var(--gray-700);
+    }
+
     button[type="submit"] {
       padding: 8px 40px;
 
@@ -78,8 +89,9 @@ export const Title = styled.div`
 `;
 
 export const Row = styled.div`
+  width: 100%;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
 `;
 
 export const CloseContainer = styled.button`

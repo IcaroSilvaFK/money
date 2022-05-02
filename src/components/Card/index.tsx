@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
 
+import { MoneyFormatter } from "../../util/moneyFormat";
+
 import { Container, Header, Body } from "./style";
 
 interface IcardsProps {
   title: string;
   typeTransactionIcon?: ReactNode;
-  money: string;
+  money: number;
   type: "whitdraw" | "entry";
   typeCard: "whitdraw" | "entry" | "result";
 }
@@ -19,13 +21,16 @@ export function Card({
 }: IcardsProps) {
   return (
     <Container>
-      <Header typeTransaction={type}>
+      <Header
+        typeTransaction={typeCard}
+        className={money > 0 ? "positive" : "negative"}
+      >
         <strong>{title}</strong>
       </Header>
       <Body typeTransaction={typeCard}>
         {typeTransactionIcon}
-        <span className={Number(money) > 0 ? "postive" : "negative"}>
-          {money}
+        <span className={money > 0 ? "positive" : "negative"}>
+          {MoneyFormatter(money)}
         </span>
       </Body>
     </Container>

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { HiArrowSmUp, HiArrowSmDown } from "react-icons/hi";
 import { HiTrash } from "react-icons/hi";
 
@@ -5,25 +6,30 @@ import { Container } from "./styles";
 import { MoneyFormatter } from "../../util/moneyFormat";
 
 interface IListItemProps {
-  description: string;
+  title: string;
   value: string;
   type: "whitdraw" | "entry";
   id: number;
 }
 
-export function ListItem({ description, type, value }: IListItemProps) {
+export function ListItem({ title, type, value, id }: IListItemProps) {
+  const router = useRouter();
+
   return (
     <Container>
       <strong className={type === "entry" ? "entry" : "whitdraw"}>
         {type === "entry" ? <HiArrowSmUp /> : <HiArrowSmDown />}
         {type === "entry" ? "Entrada" : "Saida"}
       </strong>
-      <span>{description}</span>
+      <span>{title}</span>
       <div>
         <span className={type === "entry" ? "entry" : "whitdraw"}>
-          {MoneyFormatter(value)}
+          {MoneyFormatter(Number(value))}
         </span>
-        <button>
+        <button
+          onClick={() => router.push(`/transaction/${id}`)}
+          className={type === "entry" ? "entry" : "whitdraw"}
+        >
           <HiTrash />
         </button>
       </div>

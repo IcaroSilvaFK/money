@@ -1,22 +1,20 @@
-import { useEffect } from "react";
 import { GetServerSideProps } from "next";
+import { AxiosResponse } from "axios";
+
 import Head from "next/head";
 import { HiArrowSmUp, HiArrowSmDown } from "react-icons/hi";
 
 import { Header } from "../components/Header";
 import { Card } from "../components/Card";
 import { ListItem } from "../components/ListItem";
-import { MoneyFormatter } from "../util/moneyFormat";
-import { useTransaction } from "../store/transaction.store";
 
 import { Container, ContainerCards, Ul } from "../styles/Home.module";
 import { api } from "../configs/axios";
-import { AxiosResponse } from "axios";
 
 interface IHomeProps {
   data: [
     {
-      description: string;
+      title: string;
       value: string;
       type: "whitdraw" | "entry";
       id: number;
@@ -47,26 +45,26 @@ const Home = ({ data }: IHomeProps) => {
   return (
     <Container>
       <Head>
-        <title></title>
+        <title>Seila</title>
       </Head>
       <Header />
       <ContainerCards>
         <Card
-          money={MoneyFormatter(String(values.whitdraw))}
+          money={values.whitdraw}
           title="Retiradas"
           type="whitdraw"
           typeCard="whitdraw"
           typeTransactionIcon={<HiArrowSmDown size={25} />}
         />
         <Card
-          money={MoneyFormatter(String(values.entry))}
+          money={values.entry}
           title="Entradas"
           type="entry"
           typeCard="entry"
           typeTransactionIcon={<HiArrowSmUp size={25} />}
         />
         <Card
-          money={MoneyFormatter(String(values.total))}
+          money={values.total}
           title="Resultado"
           type="entry"
           typeCard="result"
@@ -75,7 +73,7 @@ const Home = ({ data }: IHomeProps) => {
       <Ul>
         {data.map((element) => (
           <ListItem
-            description={element.description}
+            title={element.title}
             type={element.type}
             value={element.value}
             key={element.id}

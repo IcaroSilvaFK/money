@@ -19,9 +19,15 @@ export const Container = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
   border-radius: 5px;
+
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
-export const Header = styled.div<ICardProps>`
+export const Header = styled.div<ICardTypes>`
   color: #fff;
 
   padding: 20px 80px;
@@ -43,6 +49,16 @@ export const Header = styled.div<ICardProps>`
     props.typeTransaction === "entry" &&
     css`
       background: var(--secondary);
+    `}
+    ${(props) =>
+    props.typeTransaction === "result" &&
+    css`
+      &.positive {
+        background: var(--secondary);
+      }
+      &.negative {
+        background: var(--therdiary);
+      }
     `}
 `;
 
@@ -71,7 +87,7 @@ export const Body = styled.div<ICardTypes>`
     props.typeTransaction === "result" &&
     css`
       span {
-        &.postive {
+        &.positive {
           color: var(--secondary);
         }
         &.negative {
