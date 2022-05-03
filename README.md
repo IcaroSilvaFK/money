@@ -37,6 +37,10 @@
 ![projeto01nmobilescreen02](https://user-images.githubusercontent.com/86238635/166348199-07323713-1b5c-4c2e-bb89-9588acd59548.png)
 ![modalprojeto01mobileform](https://user-images.githubusercontent.com/86238635/166348314-e448ee61-8cb2-447b-92d7-312fb5d8c7e1.png)
 ![modaltransação01mobileverde](https://user-images.githubusercontent.com/86238635/166348376-7a515618-aa62-4a51-8b6d-19209d688f08.png)
+![Screenshot_22](https://user-images.githubusercontent.com/86238635/166480864-9900fdd3-6a28-4cfe-9e34-17b88fce7590.png)
+![Screenshot_24](https://user-images.githubusercontent.com/86238635/166480873-91f22547-7d9b-4713-8a50-e3c7397b6c75.png)
+![Screenshot_23](https://user-images.githubusercontent.com/86238635/166480881-b39ed5f4-ba88-4521-8797-6c14e4ee2378.png)
+![Screenshot_25](https://user-images.githubusercontent.com/86238635/166480891-48032930-eab1-498f-b7e1-a1707e25614c.png)
 
 ### Para rodar o projeto com todas as funcionalidades é nescessário <code>json-server</code>
 
