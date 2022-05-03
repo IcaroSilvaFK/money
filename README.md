@@ -23,8 +23,8 @@
   </tbody>
 </table>
 
-### Intuito do Projeto 
-  
+### Intuito do Projeto
+
 > Salvar transações efetuadas e verficar se o saldo está positivo ou negativo
 
 ### Imagens do projeto
@@ -40,18 +40,18 @@
 
 ### Para rodar o projeto com todas as funcionalidades é nescessário <code>json-server</code>
 
-
 ### Clone o repositório e digite o seguinte comando no terminal
 
 ```shell
-  yarn 
+  yarn
 ```
 
-### Para rodar 
-
+### Para rodar
 
 ```shell
-  yarn server 
+  yarn server
   // depois
   yarn dev
 ```
+
+> ! inspirado no DTMONEY da Rocketseat
