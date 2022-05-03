@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { AxiosResponse } from "axios";
+import { parseCookies } from "nookies";
 
 import Head from "next/head";
 import { HiArrowSmUp, HiArrowSmDown } from "react-icons/hi";
@@ -89,19 +90,33 @@ const Home = ({ data }: IHomeProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const response = await api.get("transactions");
+  const { token } = parseCookies(ctx);
 
-  if (response.status === 200) {
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  try {
+    const response = await api.get("transactions");
+
     const { data }: AxiosResponse<IHomeProps[]> = response;
 
     return {
       props: { data },
     };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
   }
-
-  return {
-    props: {},
-  };
 };
 
 export default Home;

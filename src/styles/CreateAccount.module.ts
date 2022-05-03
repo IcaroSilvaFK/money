@@ -121,4 +121,5 @@ export const Buttonback = styled.button`
 
   color: #fff;
   filter: brightness(1.2);
+  z-index: 2;
 `;

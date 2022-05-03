@@ -7,6 +7,7 @@ import { FaMoneyCheckAlt } from "react-icons/fa";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { setCookie } from "nookies";
 
 import { loginSchema } from "../schemas/login.schema";
 import { Input } from "../components/Input";
@@ -18,6 +19,8 @@ import {
   ContainerForm,
   ContainerImage,
 } from "../styles/Login.module";
+import { api } from "../configs/axios";
+import { toast } from "react-toastify";
 
 interface IFormProps {
   name: string;
@@ -35,7 +38,15 @@ export default function Login() {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<IFormProps> = (data) => {
+  const onSubmit: SubmitHandler<IFormProps> = async (data) => {
+    try {
+      const response = await api.post("/");
+
+      setCookie(null, "token", response.data.token, { maxAge: 60 * 60 * 24 });
+    } catch (e) {
+      toast.error("Infelizmente tivemos um erro");
+    }
+
     props.reset();
   };
 

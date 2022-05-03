@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { parseCookies } from "nookies";
 
 import { api } from "../../configs/axios";
 import { CardTransaction } from "../../components/CardTransaction";
@@ -37,6 +38,17 @@ const Transaction: NextPage<ITransactionProps> = ({ data }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   const {
     query: { id },
   } = ctx;
