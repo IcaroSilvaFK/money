@@ -1,107 +1,102 @@
-import { GetServerSideProps } from "next";
-import { AxiosResponse } from "axios";
-
+import { useState } from "react";
+import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AiOutlineUser, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { RiLockPasswordFill, RiSendPlaneFill } from "react-icons/ri";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 import Head from "next/head";
-import { HiArrowSmUp, HiArrowSmDown } from "react-icons/hi";
+import Image from "next/image";
+import Link from "next/link";
 
-import { Header } from "../components/Header";
-import { Card } from "../components/Card";
-import { ListItem } from "../components/ListItem";
-import { NewTrasactionButton } from "../components/Mobile/NewTransactionButton";
+import { loginSchema } from "../schemas/login.schema";
+import { Input } from "../components/Input";
 
-import { Container, ContainerCards, Text, Ul } from "../styles/Home.module";
-import { api } from "../configs/axios";
+import {
+  Button,
+  Container,
+  Row,
+  ContainerForm,
+  ContainerImage,
+} from "../styles/Login.module";
 
-interface IHomeProps {
-  data: [
-    {
-      title: string;
-      value: string;
-      type: "whitdraw" | "entry";
-      id: number;
-    }
-  ];
+interface IFormProps {
+  name: string;
+  password: string;
 }
 
-const Home = ({ data }: IHomeProps) => {
-  const values = data.reduce(
-    (acc, currentValue) => {
-      if (currentValue.type === "entry") {
-        acc.entry += +currentValue.value;
-        acc.total += +currentValue.value;
-      }
-      if (currentValue.type === "whitdraw") {
-        acc.whitdraw += +currentValue.value;
-        acc.total -= +currentValue.value;
-      }
-      return acc;
+export default function Login() {
+  const [inputType, setInputType] = useState("password");
+
+  const props = useForm<IFormProps>({
+    defaultValues: {
+      name: "",
+      password: "",
     },
-    {
-      entry: 0,
-      whitdraw: 0,
-      total: 0,
-    }
-  );
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmit: SubmitHandler<IFormProps> = (data) => {
+    props.reset();
+  };
 
   return (
-    <Container>
+    <>
       <Head>
-        <title>Seila</title>
+        <title>Login</title>
       </Head>
-      <Header />
-      <ContainerCards>
-        <Card
-          money={values.whitdraw}
-          title="Retiradas"
-          type="whitdraw"
-          typeCard="whitdraw"
-          typeTransactionIcon={<HiArrowSmDown size={25} />}
-        />
-        <Card
-          money={values.entry}
-          title="Entradas"
-          type="entry"
-          typeCard="entry"
-          typeTransactionIcon={<HiArrowSmUp size={25} />}
-        />
-        <Card
-          money={values.total}
-          title="Resumo"
-          type="entry"
-          typeCard="result"
-        />
-      </ContainerCards>
-      <Text>Transações Efetuadas :</Text>
-      <Ul>
-        {data.map((element) => (
-          <ListItem
-            title={element.title}
-            type={element.type}
-            value={element.value}
-            key={element.id}
-            id={element.id}
+      <Container>
+        <ContainerForm>
+          <div className="containerForm__title">
+            <div className="title__svg">
+              <FaMoneyCheckAlt size={25} />
+            </div>
+            <h2>Lorem ipsum</h2>
+          </div>
+          <FormProvider {...props}>
+            <form onSubmit={props.handleSubmit(onSubmit)}>
+              <Input
+                name="name"
+                placeholder="Digite aqui seu username"
+                type="text"
+                icon={<AiOutlineUser />}
+              />
+              <Row>
+                <Input
+                  name="password"
+                  placeholder="Digite aqui sua senha"
+                  type={inputType}
+                  icon={<RiLockPasswordFill />}
+                />
+                {inputType === "password" ? (
+                  <AiFillEye onClick={() => setInputType("text")} size={15} />
+                ) : (
+                  <AiFillEyeInvisible
+                    onClick={() => setInputType("password")}
+                    size={15}
+                  />
+                )}
+              </Row>
+
+              <Button>
+                Entrar <RiSendPlaneFill />
+              </Button>
+            </form>
+          </FormProvider>
+          <Link href="/createAccount">
+            <a>
+              Não possui conta? <span>clique aqui</span>
+            </a>
+          </Link>
+        </ContainerForm>
+        <ContainerImage>
+          <Image
+            src="/assets/manageMoney.png"
+            alt="My Money"
+            width={560}
+            height={560}
           />
-        ))}
-      </Ul>
-      <NewTrasactionButton />
-    </Container>
+        </ContainerImage>
+      </Container>
+    </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const response = await api.get("transactions");
-
-  if (response.status === 200) {
-    const { data }: AxiosResponse<IHomeProps[]> = response;
-
-    return {
-      props: { data },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
-
-export default Home;
+}

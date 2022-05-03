@@ -33,7 +33,12 @@ export function Input({ name, icon, placeholder, type }: IInputProps) {
       render={({ field }) => (
         <Container>
           {icon}
-          <input type={type} placeholder={placeholder} {...field} />
+          <input
+            type={type}
+            placeholder={placeholder}
+            {...field}
+            autoComplete="off"
+          />
         </Container>
       )}
     />
