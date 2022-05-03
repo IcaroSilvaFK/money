@@ -1,12 +1,20 @@
 import { useRouter } from "next/router";
 import { HiTrash } from "react-icons/hi";
+import { AiOutlineClose } from "react-icons/ai";
 
 import { MoneyFormatter } from "../../util/moneyFormat";
 
 import { toast } from "react-toastify";
 import { api } from "../../configs/axios";
 
-import { Container, ContainerButtontrash } from "./styles";
+import {
+  Container,
+  ContainerButtontrash,
+  Header,
+  Body,
+  ButtonDelete,
+  Separator,
+} from "./styles";
 
 interface ICardTransactionProps {
   description: string;
@@ -45,12 +53,28 @@ export function CardTransaction({
 
   return (
     <Container type={type}>
-      <ContainerButtontrash onClick={() => deleteTransaction(id)}>
-        <HiTrash size={20} />
-      </ContainerButtontrash>
-      <h1>{title}</h1>
-      <h1>{description}</h1>
-      <h2>{MoneyFormatter(value)}</h2>
+      <button className="return" onClick={() => router.push("/")}>
+        <AiOutlineClose size={15} />
+      </button>
+      <Header>
+        <label htmlFor="">Titulo da transação :</label>
+        <strong>{title}</strong>
+      </Header>
+      <Body>
+        <label htmlFor="">Descrição da Transação :</label>
+        <p>{description}</p>
+      </Body>
+      <ButtonDelete
+        title="Apagar transação"
+        onClick={() => deleteTransaction(id)}
+        typeTransaction={type}
+      >
+        <span>{MoneyFormatter(value)}</span>
+        <Separator />
+        <ContainerButtontrash>
+          <HiTrash size={15} />
+        </ContainerButtontrash>
+      </ButtonDelete>
     </Container>
   );
 }

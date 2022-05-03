@@ -7,8 +7,9 @@ import { HiArrowSmUp, HiArrowSmDown } from "react-icons/hi";
 import { Header } from "../components/Header";
 import { Card } from "../components/Card";
 import { ListItem } from "../components/ListItem";
+import { NewTrasactionButton } from "../components/Mobile/NewTransactionButton";
 
-import { Container, ContainerCards, Ul } from "../styles/Home.module";
+import { Container, ContainerCards, Text, Ul } from "../styles/Home.module";
 import { api } from "../configs/axios";
 
 interface IHomeProps {
@@ -65,11 +66,12 @@ const Home = ({ data }: IHomeProps) => {
         />
         <Card
           money={values.total}
-          title="Resultado"
+          title="Resumo"
           type="entry"
           typeCard="result"
         />
       </ContainerCards>
+      <Text>Transações Efetuadas :</Text>
       <Ul>
         {data.map((element) => (
           <ListItem
@@ -81,6 +83,7 @@ const Home = ({ data }: IHomeProps) => {
           />
         ))}
       </Ul>
+      <NewTrasactionButton />
     </Container>
   );
 };

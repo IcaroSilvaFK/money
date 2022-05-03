@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
@@ -27,6 +28,8 @@ interface IFormProps {
 }
 
 export function Modal() {
+  const [whitdraw, setWhitdraw] = useState(false);
+  const [deposit, setDeposit] = useState(false);
   const router = useRouter();
 
   const { type, setTranscation } = useTypeTransaction();
@@ -96,12 +99,27 @@ export function Modal() {
                 <Buttons
                   style="Secondary"
                   text="Depósito"
-                  onClick={() => setTranscation("entry")}
+                  onClick={() => {
+                    setTranscation("entry");
+                    setDeposit((prev) => !prev);
+                    if (whitdraw) {
+                      setWhitdraw(false);
+                    }
+                  }}
+                  active={deposit ? "desactive" : ""}
                 />
+
                 <Buttons
                   style="Therdiary"
                   text="Retirada"
-                  onClick={() => setTranscation("whitdraw")}
+                  onClick={() => {
+                    setTranscation("whitdraw");
+                    setWhitdraw((prev) => !prev);
+                    if (deposit) {
+                      setDeposit(false);
+                    }
+                  }}
+                  active={whitdraw ? "desactive" : ""}
                 />
               </Row>
               <Input
@@ -112,8 +130,8 @@ export function Modal() {
               <textarea
                 {...props.register("description")}
                 id=""
-                cols={65}
-                rows={10}
+                cols={50}
+                rows={5}
                 placeholder="Digite aqui uma descrição"
               ></textarea>
               <div className="containerButton">

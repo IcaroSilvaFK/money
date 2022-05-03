@@ -20,4 +20,14 @@ export const Container = styled.header`
       font-size: 1.2rem;
     }
   }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .container__button {
+      display: none;
+    }
+  }
 `;

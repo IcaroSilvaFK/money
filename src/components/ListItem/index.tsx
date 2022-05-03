@@ -16,12 +16,12 @@ export function ListItem({ title, type, value, id }: IListItemProps) {
   const router = useRouter();
 
   return (
-    <Container>
+    <Container onClick={() => router.push(`/transaction/${id}`)}>
       <strong className={type === "entry" ? "entry" : "whitdraw"}>
         {type === "entry" ? <HiArrowSmUp /> : <HiArrowSmDown />}
         {type === "entry" ? "Entrada" : "Saida"}
       </strong>
-      <span>{title}</span>
+      <span>{title.split(" ")[0]}</span>
       <div>
         <span className={type === "entry" ? "entry" : "whitdraw"}>
           {MoneyFormatter(Number(value))}
@@ -30,7 +30,7 @@ export function ListItem({ title, type, value, id }: IListItemProps) {
           onClick={() => router.push(`/transaction/${id}`)}
           className={type === "entry" ? "entry" : "whitdraw"}
         >
-          <HiTrash />
+          <HiTrash size={18} />
         </button>
       </div>
     </Container>

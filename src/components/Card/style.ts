@@ -25,6 +25,12 @@ export const Container = styled.div`
   &:hover {
     transform: scale(1.1);
   }
+
+  @media (max-width: 500px) {
+    width: 100%;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  }
 `;
 
 export const Header = styled.div<ICardTypes>`

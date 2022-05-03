@@ -8,7 +8,7 @@ export const ModalBackground = styled.div`
   right: 0;
   bottom: 0;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
 
   display: flex;
   align-items: center;
@@ -51,8 +51,15 @@ export const Container = styled.div`
       border-radius: 4px;
       border: none;
       outline: 1px solid var(--gray-700);
-    }
 
+      &::placeholder {
+        text-align: center;
+      }
+    }
+    .desactive {
+      filter: brightness(0.7);
+      cursor: not-allowed;
+    }
     button[type="submit"] {
       padding: 8px 40px;
 
@@ -72,6 +79,20 @@ export const Container = styled.div`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   position: relative;
+
+  @media (max-width: 500px) {
+    width: 90%;
+
+    form {
+      textarea {
+        width: 100%;
+      }
+
+      div {
+        gap: 10px;
+      }
+    }
+  }
 `;
 
 export const Title = styled.div`

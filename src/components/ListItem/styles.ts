@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
+export const Container = styled.li`
+  width: 36%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   gap: 40px;
-
-  border-bottom: 1px solid var(--gray-700);
 
   padding: 10px;
 
@@ -46,5 +44,18 @@ export const Container = styled.div`
     &.whitdraw {
       color: var(--therdiary);
     }
+  }
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+
+    justify-content: center;
+  }
+  border-radius: 10px;
+  cursor: pointer;
+
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;

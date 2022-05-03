@@ -25,7 +25,7 @@ const Transaction: NextPage<ITransactionProps> = ({ data }) => {
       </Head>
       <Container>
         <CardTransaction
-          title={data.description}
+          title={data.title}
           description={data.description}
           id={data.id}
           type={data.type}
